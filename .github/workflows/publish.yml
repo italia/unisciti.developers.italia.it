@@ -1,0 +1,21 @@
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+
+      - run: |
+          mkdir build
+
+          cp index.html build
+
+          echo developers.italia.it > build/CNAME
+      - uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: build
